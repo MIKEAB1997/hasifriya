@@ -82,21 +82,68 @@ export const MOCKUP_LIBRARY: Record<string, string[]> = {
 export const INITIAL_PRESENTATIONS: Presentation[] = [
   {
     id: '1',
-    title: 'תרבות ארגונית 2024',
-    description: 'סקירה מקיפה על הערכים והמטרות של הארגון לשנה הקרובה.',
-    category: 'תרבות ארגונית',
-    thumbnailUrl: MOCKUP_LIBRARY.culture[0],
-    driveUrl: 'https://docs.google.com/presentation/d/1example1/preview',
+    title: 'מלחמות הסייבר של הבינה המלאכותית',
+    description: 'דו"ח איומים גלובלי: כיצד מעצמות העולם משתמשות ב-AI במלחמות סייבר, ואילו איומים חדשים צצים בזירה הדיגיטלית.',
+    category: 'טכנולוגיה ו-AI',
+    thumbnailUrl: MOCKUP_LIBRARY.tech[1],
+    driveUrl: '/pdfs/AI_Cyber_Wars_World_Leaders_Threat_Report.pdf',
     isNew: true,
-    addedAt: '2024-03-20'
+    addedAt: '2026-02-16'
   },
   {
     id: '2',
-    title: 'שירות לקוחות בעידן AI',
-    description: 'כיצד להשתמש בכלי בינה מלאכותית לשיפור חווית הלקוח.',
+    title: 'אינטליגנציה התנהגותית וחיישנים דיגיטליים',
+    description: 'סקירה מעמיקה על שימוש בחיישנים דיגיטליים לניתוח דפוסי התנהגות, זיהוי מגמות ושיפור תהליכי קבלת החלטות.',
+    category: 'ניתוח נתונים',
+    thumbnailUrl: MOCKUP_LIBRARY.data[1],
+    driveUrl: '/pdfs/Behavioral_Intelligence_Digital_Sensors.pdf',
+    isNew: true,
+    addedAt: '2026-02-16'
+  },
+  {
+    id: '3',
+    title: 'אסטרטגיית המבצר הדיגיטלי',
+    description: 'מדריך אסטרטגי לבניית הגנה דיגיטלית רב-שכבתית, כולל עקרונות ארכיטקטורת אבטחה וניהול סיכונים בעידן הדיגיטלי.',
+    category: 'אסטרטגיה ותכנון',
+    thumbnailUrl: MOCKUP_LIBRARY.strategy[0],
+    driveUrl: '/pdfs/Digital_Fortress_Strategy.pdf',
+    addedAt: '2026-02-16'
+  },
+  {
+    id: '4',
+    title: 'שחקנים לא-מדינתיים בזירה הגלובלית',
+    description: 'ניתוח עוצמתם הגוברת של שחקנים לא-מדינתיים בפוליטיקה הבינלאומית, כולל ארגוני טרור, תאגידי ענק וקבוצות האקרים.',
+    category: 'אסטרטגיה ותכנון',
+    thumbnailUrl: MOCKUP_LIBRARY.strategy[2],
+    driveUrl: '/pdfs/Nonstate_Actors_Global_Power.pdf',
+    addedAt: '2026-02-16'
+  },
+  {
+    id: '5',
+    title: 'ניהול פרויקטים למי שלא מנהל פרויקטים',
+    description: 'מדריך מעשי ונגיש לעקרונות ניהול פרויקטים, מיועד לאנשי מקצוע שנדרשים להוביל משימות ללא רקע פורמלי בתחום.',
+    category: 'מיומנויות רכות',
+    thumbnailUrl: MOCKUP_LIBRARY.soft_skills[0],
+    driveUrl: '/pdfs/Project_Management_for_Non-Managers.pdf',
+    isNew: true,
+    addedAt: '2026-02-16'
+  },
+  {
+    id: '6',
+    title: 'Shadow AI: מסיכון ליתרון',
+    description: 'כיצד ארגונים מתמודדים עם השימוש הבלתי מפוקח ב-AI על ידי עובדים, והפיכת הסיכון להזדמנות אסטרטגית.',
     category: 'טכנולוגיה ו-AI',
-    thumbnailUrl: MOCKUP_LIBRARY.tech[0],
-    driveUrl: 'https://docs.google.com/presentation/d/1example2/preview',
-    addedAt: '2024-03-18'
+    thumbnailUrl: MOCKUP_LIBRARY.tech[3],
+    driveUrl: '/pdfs/Shadow_AI_Risk_to_Advantage.pdf',
+    addedAt: '2026-02-16'
+  },
+  {
+    id: '7',
+    title: 'הדרקון ומלחמת השבבים',
+    description: 'ניתוח גיאופוליטי של מלחמת השבבים בין סין לארה"ב, השלכותיה על שרשרת האספקה הגלובלית ועל עתיד הטכנולוגיה.',
+    category: 'אסטרטגיה ותכנון',
+    thumbnailUrl: MOCKUP_LIBRARY.tech[5],
+    driveUrl: '/pdfs/The_Dragon_and_the_Chip_War.pdf',
+    addedAt: '2026-02-16'
   }
 ];

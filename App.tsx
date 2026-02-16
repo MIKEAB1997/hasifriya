@@ -8,8 +8,12 @@ import PresentationRow from './components/PresentationRow';
 import PresentationModal from './components/PresentationModal';
 import AdminPanel from './components/AdminPanel';
 
+const AUTH_KEY = 'hasifriya_auth';
+
 const App: React.FC = () => {
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(() => {
+    return sessionStorage.getItem(AUTH_KEY) === 'true';
+  });
   const [authCode, setAuthCode] = useState('');
   const [authError, setAuthError] = useState(false);
 
@@ -43,6 +47,7 @@ const App: React.FC = () => {
     e.preventDefault();
     if (authCode === '9090') {
       setIsAuthorized(true);
+      sessionStorage.setItem(AUTH_KEY, 'true');
       setAuthError(false);
     } else {
       setAuthError(true);
@@ -95,24 +100,31 @@ const App: React.FC = () => {
     svc.removeCategory(cat);
   }, []);
 
+  const totalCount = presentations.length;
+
   if (!isAuthorized) {
     return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-700">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 text-center">
         <div className="w-full max-w-sm">
-          <div className="mb-12">
-            <h1 className="bg-gradient-to-r from-primary via-red-400 to-primary bg-clip-text text-transparent text-6xl font-black tracking-tighter mb-4 italic">הספרייה</h1>
-            <p className="text-gray-400 text-lg font-medium">המקום שלכם לצמוח ולהצליח</p>
+          <div className="mb-14">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+              <span className="material-icons text-primary text-4xl">menu_book</span>
+            </div>
+            <h1 className="bg-gradient-to-r from-primary via-red-400 to-primary bg-clip-text text-transparent text-5xl font-black tracking-tight mb-3">הספרייה</h1>
+            <p className="text-gray-500 text-base">הזינו קוד גישה כדי להיכנס למאגר</p>
           </div>
-          <form onSubmit={handleAuth} className="space-y-4">
+          <form onSubmit={handleAuth} className="space-y-5">
             <input
               type="password"
-              className={`w-full bg-surface border-2 ${authError ? 'border-primary animate-shake' : 'border-white/10'} rounded-2xl p-5 text-center text-3xl font-mono text-white focus:outline-none focus:border-primary transition-all shadow-inner`}
-              placeholder="****"
+              className={`w-full bg-surface border-2 ${authError ? 'border-primary' : 'border-white/10'} rounded-2xl p-5 text-center text-3xl font-mono text-white focus:outline-none focus:border-primary/60 transition-all tracking-[0.5em]`}
+              placeholder="----"
               value={authCode}
               onChange={(e) => { setAuthCode(e.target.value); setAuthError(false); }}
               autoFocus
+              maxLength={6}
             />
-            <button type="submit" className="w-full bg-primary hover:bg-red-700 text-white font-bold py-5 rounded-2xl shadow-xl transition-all active:scale-95">כניסה</button>
+            {authError && <p className="text-primary text-sm font-bold">קוד שגוי, נסו שנית</p>}
+            <button type="submit" className="w-full bg-primary hover:bg-red-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">כניסה</button>
           </form>
         </div>
       </div>
@@ -120,46 +132,81 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-white flex flex-col max-w-4xl mx-auto relative overflow-x-hidden shadow-2xl border-x border-white/5">
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl p-6 flex items-center justify-between border-b border-white/5">
+    <div className="min-h-screen bg-background text-white flex flex-col max-w-5xl mx-auto relative overflow-x-hidden">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-xl px-6 py-4 flex items-center justify-between border-b border-white/5">
         <div className="flex items-center gap-3">
-          <span className="bg-gradient-to-r from-primary to-red-400 bg-clip-text text-transparent font-black text-3xl tracking-tighter italic">הספרייה</span>
+          <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+            <span className="material-icons text-primary text-lg">menu_book</span>
+          </div>
+          <span className="text-white font-extrabold text-xl tracking-tight">הספרייה</span>
         </div>
-        <div className="flex items-center gap-4">
-          <button className={`${isSearchOpen ? 'text-primary' : 'text-gray-400'} p-2`} onClick={() => setIsSearchOpen(!isSearchOpen)}>
-            <span className="material-icons text-2xl">search</span>
+        <div className="flex items-center gap-2">
+          <button
+            className={`p-2.5 rounded-xl transition-all ${isSearchOpen ? 'bg-primary/10 text-primary' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+          >
+            <span className="material-icons text-xl">search</span>
           </button>
-          <button className="text-gray-400 hover:text-primary w-10 h-10 bg-white/5 rounded-xl border border-white/10" onClick={() => setIsAdminOpen(true)}>
+          <button
+            className="p-2.5 rounded-xl text-gray-500 hover:text-white hover:bg-white/5 transition-all"
+            onClick={() => setIsAdminOpen(true)}
+          >
             <span className="material-icons text-xl">settings</span>
           </button>
         </div>
       </header>
 
-      <main className="flex-1 pt-6 pb-12">
-        <div className="px-6 mb-16">
-          <div className="max-w-2xl mx-auto relative bg-black/40 backdrop-blur-2xl border border-primary/30 rounded-[3rem] p-12 text-center shadow-2xl">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 text-white leading-tight italic">כל הידע ב<span className="text-primary italic">קליק</span> אחד!</h2>
-            <p className="text-gray-300 text-xl font-light">מאגר המצגות וההעשרה של הארגון זמין עבורכם בכל זמן ומכל מקום.</p>
+      <main className="flex-1 pt-8 pb-16">
+        {/* Hero */}
+        <div className="px-6 mb-12">
+          <div className="max-w-3xl mx-auto relative bg-gradient-to-br from-surface to-black border border-white/5 rounded-3xl p-10 md:p-14">
+            <div className="absolute top-6 left-6 w-16 h-16 bg-primary/5 rounded-full blur-2xl"></div>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-white leading-tight">
+              כל הידע ב<span className="text-primary">קליק</span> אחד
+            </h2>
+            <p className="text-gray-400 text-lg max-w-lg">
+              מאגר המצגות וההעשרה של הארגון. {totalCount} מצגות זמינות עבורכם בכל זמן ומכל מקום.
+            </p>
           </div>
         </div>
 
+        {/* Search */}
         {isSearchOpen && (
-          <div className="px-6 mb-8 animate-in slide-in-from-top-2 duration-300">
-            <input autoFocus className="w-full bg-surface p-5 rounded-3xl text-lg border border-white/10 focus:outline-none focus:border-primary transition-all shadow-2xl" placeholder="חפש מצגת..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          <div className="px-6 mb-10">
+            <div className="relative max-w-2xl mx-auto">
+              <span className="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl">search</span>
+              <input
+                autoFocus
+                className="w-full bg-surface pr-12 pl-5 py-4 rounded-2xl text-base border border-white/10 focus:outline-none focus:border-primary/50 transition-all placeholder:text-gray-600"
+                placeholder="חיפוש לפי שם, תיאור או קטגוריה..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
         )}
 
-        <div className="flex flex-col gap-12">
+        {/* Content */}
+        <div className="flex flex-col gap-10">
           {categories.map(category => (
             categorizedPresentations[category]?.length > 0 && (
               <PresentationRow key={category} title={category} presentations={categorizedPresentations[category]} onSelect={setSelectedPresentation} />
             )
           ))}
           {filteredPresentations.length === 0 && (
-            <div className="text-center py-20 text-gray-500"><p>לא מצאנו מצגות שתואמות לחיפוש...</p></div>
+            <div className="text-center py-24">
+              <span className="material-icons text-5xl text-gray-700 mb-4 block">search_off</span>
+              <p className="text-gray-500 text-lg">לא נמצאו מצגות שתואמות לחיפוש</p>
+            </div>
           )}
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="px-6 py-6 border-t border-white/5 text-center">
+        <p className="text-gray-600 text-xs">הספרייה - מאגר מצגות פנימי</p>
+      </footer>
 
       <PresentationModal presentation={selectedPresentation} onClose={() => setSelectedPresentation(null)} />
 

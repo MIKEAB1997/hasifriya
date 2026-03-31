@@ -155,7 +155,7 @@ const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminCli
             <Orbit className="h-6 w-6 text-white/80" />
           </div>
           <div>
-            <h1 className="text-2xl font-black tracking-[0.2em] text-white">מאגרון</h1>
+            <h1 className="text-xl sm:text-2xl font-black tracking-[0.2em] text-white">מאגרון</h1>
             <p className="text-xs font-mono tracking-widest text-white/50">GLOBAL LIBRARY HUB</p>
           </div>
         </div>
@@ -168,7 +168,7 @@ const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminCli
       </header>
 
       {/* Main UI Layout - Epic Game Selection Menu Style */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pt-24 px-8">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-start sm:justify-center pt-28 pb-10 px-4 sm:px-8 overflow-y-auto">
         
         {/* Title Area */}
         <div className="text-center mb-10 transform transition-all duration-500">
@@ -176,7 +176,7 @@ const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminCli
             {hoveredWorld ? 'INCOMING CONNECTION' : 'SELECT YOUR DESTINATION'}
           </h2>
           <h1 
-            className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight"
+            className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-tight"
             style={{
               color: hoveredWorld ? hoveredWorld.accentColor : 'white',
               textShadow: hoveredWorld ? `0 0 40px ${hoveredWorld.glowColor}` : '0 0 20px rgba(255,255,255,0.2)'
@@ -190,10 +190,10 @@ const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminCli
         </div>
 
         {/* Two-Column Clean Grid */}
-        <div className="w-full max-w-6xl mx-auto flex gap-4 md:gap-8 justify-center">
+        <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-4 md:gap-8 justify-center px-2">
           
           {/* Left Column */}
-          <div className="flex flex-col gap-3 w-1/2 max-w-[400px]">
+          <div className="flex flex-col gap-3 w-full md:w-1/2 max-w-[400px]">
             {leftCol.map(world => (
               <WorldMenuItem 
                 key={world.id} 
@@ -207,7 +207,7 @@ const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminCli
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col gap-3 w-1/2 max-w-[400px]">
+          <div className="flex flex-col gap-3 w-full md:w-1/2 max-w-[400px]">
             {rightCol.map(world => (
               <WorldMenuItem 
                 key={world.id} 
@@ -235,7 +235,7 @@ const WorldMenuItem = ({ world, isHovered, onHover, onLeave, onClick }: {
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       onClick={onClick}
-      className={`relative group w-full flex items-center justify-between p-4 rounded-xl border backdrop-blur-md transition-all duration-300 ${
+      className={`relative group w-full flex items-center justify-between p-4 sm:p-5 rounded-xl border backdrop-blur-md transition-all duration-300 ${
         isHovered 
           ? 'bg-black/60 scale-[1.02] translate-x-2' 
           : 'bg-black/30 hover:bg-black/50 hover:border-white/20 border-white/5'
@@ -253,7 +253,7 @@ const WorldMenuItem = ({ world, isHovered, onHover, onLeave, onClick }: {
         />
         <div>
           <h3 
-            className="text-xl font-bold transition-colors duration-300 text-right"
+            className="text-lg sm:text-xl font-bold transition-colors duration-300 text-right"
             style={{ color: isHovered ? 'white' : 'rgba(255,255,255,0.7)' }}
           >
             {world.label}

@@ -641,7 +641,7 @@ const App: React.FC = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
         </div>
         <div className="w-full max-w-md relative z-10 animate-[slide-up_1s_ease-out_forwards]">
-          <div className="rounded-[2.5rem] p-10 bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_0_100px_rgba(56,189,248,0.15)] relative overflow-hidden transition-all hover:border-cyan-400/30">
+          <div className="rounded-[2.5rem] p-6 sm:p-10 bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_0_100px_rgba(56,189,248,0.15)] relative overflow-hidden transition-all hover:border-cyan-400/30">
             <div className="absolute top-0 left-1/4 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#22d3ee] animate-pulse" />
             <div className="mb-10 text-center">
               <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
@@ -673,7 +673,7 @@ const App: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h1 className="text-5xl font-black tracking-[0.2em] mb-3 text-white drop-shadow-[0_0_20px_#fff]">מאגרון</h1>
+              <h1 className="text-4xl sm:text-5xl font-black tracking-[0.1em] sm:tracking-[0.2em] mb-3 text-white drop-shadow-[0_0_20px_#fff]">מאגרון</h1>
               <p className="text-cyan-200/60 font-mono tracking-widest text-sm uppercase mb-4">Global Intelligence Hub</p>
               <div className="inline-block px-4 py-1.5 rounded-full border border-cyan-400/20 bg-cyan-950/40">
                 <span className="text-cyan-300 text-xs tracking-widest animate-pulse">הזן קוד פריצה (9090) כדי להמשיך</span>
@@ -685,7 +685,7 @@ const App: React.FC = () => {
                 <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="password"
-                  className={`w-full bg-black/60 border border-cyan-500/30 rounded-2xl p-5 pr-12 text-center text-3xl font-mono text-cyan-100 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all tracking-[0.5em] placeholder:text-cyan-900/50 shadow-inner ${authError ? 'border-rose-400' : ''}`}
+                  className={`w-full bg-black/60 border border-cyan-500/30 rounded-2xl p-4 sm:p-5 pr-10 sm:pr-12 text-center text-2xl sm:text-3xl font-mono text-cyan-100 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all tracking-[0.5em] placeholder:text-cyan-900/50 shadow-inner ${authError ? 'border-rose-400' : ''}`}
                   placeholder="••••"
                   value={authCode}
                   onChange={event => {
@@ -928,7 +928,7 @@ const App: React.FC = () => {
             <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(340px,0.95fr)] lg:gap-10">
               <div className="animate-slide-up">
               <p className="text-xs font-black tracking-[0.45em] text-white/30 uppercase mb-4">MAAGARON · מאגרון</p>
-              <h1 className="text-5xl sm:text-7xl font-black text-white tracking-tight mb-5 leading-none">
+              <h1 className="text-4xl sm:text-7xl font-black text-white tracking-tight mb-5 leading-[1.1]">
                 כל מה שצריך
                 <br />
                 <span className="gradient-text">במקום אחד</span>

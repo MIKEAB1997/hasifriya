@@ -1,20 +1,20 @@
 import { WorldSceneVariant } from './WorldScene';
 
 const WORLD_VISUALS: Record<WorldSceneVariant | 'global', string> = {
-  global: '/worlds/global-world.svg',
-  neutral: '/worlds/global-world.svg',
-  cyber: '/worlds/cyber-world.svg',
-  phishing: '/worlds/phishing-world.svg',
-  identity: '/worlds/identity-world.svg',
-  deepfake: '/worlds/deepfake-world.svg',
-  cloud: '/worlds/cloud-world.svg',
-  vulnerabilities: '/worlds/ransomware-world.svg',
-  insider: '/worlds/insider-world.svg',
-  ransomware: '/worlds/ransomware-world.svg',
-  social: '/worlds/social-world.svg',
-  mobile: '/worlds/mobile-world.svg',
-  'mobile-incidents': '/worlds/mobile-world.svg',
-  supply: '/worlds/cloud-world.svg',
+  global: '/worlds/global-bg.png',
+  neutral: '/worlds/global-bg.png',
+  cyber: '/worlds/cyber-bg.png',
+  phishing: '/worlds/phishing-bg.png',
+  identity: '/worlds/identity-bg.png',
+  deepfake: '/worlds/deepfake-bg.png',
+  cloud: '/worlds/cloud-bg.png',
+  vulnerabilities: '/worlds/vulnerabilities-bg.png',
+  insider: '/worlds/espionage-bg.png',
+  ransomware: '/worlds/ransomware-bg.png',
+  social: '/worlds/social-bg.png',
+  mobile: '/worlds/mobile-bg.png',
+  'mobile-incidents': '/worlds/mobile_incidents-bg.png',
+  supply: '/worlds/supply-bg.png',
 };
 
 export const getWorldVisual = (variant: WorldSceneVariant | 'global') => WORLD_VISUALS[variant];

@@ -825,11 +825,7 @@ const App: React.FC = () => {
 
         {/* Full-bleed WorldScene background */}
         <WorldScene variant={isWorldMode ? activeWorldScene : 'neutral'} mode="hero" className="absolute inset-0 w-full h-full opacity-65" />
-        <img
-          src={isWorldMode ? getWorldVisual(activeWorldScene) : getWorldVisual('global')}
-          alt={isWorldMode ? activePortalTopic?.label || 'מאגרון' : 'מאגרון'}
-          className="absolute inset-0 h-full w-full object-cover opacity-78"
-        />
+        
 
         {/* Layered overlays for readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 pointer-events-none" />
@@ -957,11 +953,7 @@ const App: React.FC = () => {
               <div className="animate-slide-up [animation-delay:120ms]">
                 <div className="relative h-[20rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/20 shadow-[0_30px_100px_rgba(0,0,0,0.38)] sm:h-[24rem]">
                   <WorldScene variant="neutral" mode="hero" className="absolute inset-0 opacity-45" />
-                  <img
-                    src={getWorldVisual('global')}
-                    alt="Global world"
-                    className="absolute inset-0 h-full w-full object-cover opacity-84"
-                  />
+                  
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                     <div className="grid grid-cols-3 gap-3">

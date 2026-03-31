@@ -50,7 +50,6 @@ export const resolveWorldSceneVariant = (
   topicId: string,
   isWorldMode = true
 ): WorldSceneVariant => {
-  if (!isWorldMode) return 'neutral';
 
   switch (topicId) {
     case 'shortcut-social':
@@ -90,21 +89,20 @@ const WorldScene: React.FC<WorldSceneProps> = ({ variant, mode = 'panel', classN
       aria-hidden="true"
       className={`absolute inset-0 overflow-hidden rounded-[inherit] bg-black ${className}`}
     >
-      <img 
-        src={imgSrc} 
-        alt={`${variant} world background`} 
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-[3000ms] ease-out ${
-          mode === 'hero' ? 'scale-105 saturate-[1.2] opacity-90' : 'scale-100 saturate-100 opacity-60'
-        }`} 
+      <img
+        src={imgSrc}
+        alt={`${variant} world background`}
+        className={`absolute inset-0 w-full h-full object-cover transition-all duration-[3000ms] ease-out ${mode === 'hero' ? 'scale-105 saturate-[1.2] opacity-90' : 'scale-100 saturate-100 opacity-60'
+          }`}
       />
-      
+
       {/* Dynamic Overlay per World to ensure UI readability */}
       <div className={`absolute inset-0 ${overlayByVariant[variant]}`} />
-      
+
       {/* Shared Ambient Particles over the background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_40%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,0,0,0)_60%,rgba(0,0,0,0.6)_100%)]" />
-      
+
       {mode === 'hero' && (
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--tw-gradient-stops)] to-transparent pointer-events-none" />
       )}

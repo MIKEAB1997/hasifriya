@@ -62,7 +62,7 @@ const getScenarioIcon = (iconName: string) => {
 import { ThemeKey, WorldTheme, WORLD_THEMES } from './components/themeData';
 
 const getWorldThemeKey = (topicId: string, isWorldMode: boolean): ThemeKey => {
-  if (!isWorldMode) return 'neutral';
+  // removed neutral fallback
   
   if (topicId === 'shortcut-cyber') return 'cyber';
   if (topicId === 'shortcut-phishing') return 'phishing';
@@ -633,11 +633,16 @@ const App: React.FC = () => {
   if (!isAuthorized) {
     return (
       <div
-        className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 flex flex-col items-center justify-center p-6"
-        dir="rtl"
-      >
-        <div className="w-full max-w-sm animate-slide-up">
-          <div className="bg-white rounded-3xl shadow-2xl p-10">
+        className="relative min-h-screen flex flex-col items-center justify-center p-6 overflow-hidden bg-black font-sans" dir="rtl">
+        {/* Massive 3D Global Space Background */}
+        <div className="absolute inset-0">
+          <img src="/worlds/global-bg.png" className="absolute inset-0 w-full h-full object-cover opacity-60 animate-[pulse_10s_ease-in-out_infinite]" alt="Global Hub" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
+        </div>
+        <div className="w-full max-w-md relative z-10 animate-[slide-up_1s_ease-out_forwards]">
+          <div className="rounded-[2.5rem] p-10 bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_0_100px_rgba(56,189,248,0.15)] relative overflow-hidden transition-all hover:border-cyan-400/30">
+            <div className="absolute top-0 left-1/4 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#22d3ee] animate-pulse" />
             <div className="mb-10 text-center">
               <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
                 <svg
@@ -668,8 +673,11 @@ const App: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h1 className="text-4xl font-black tracking-tight mb-3 text-gray-900">מאגרון</h1>
-              <p className="text-gray-500 text-base">הזינו קוד גישה כדי להיכנס למאגרון</p>
+              <h1 className="text-5xl font-black tracking-[0.2em] mb-3 text-white drop-shadow-[0_0_20px_#fff]">מאגרון</h1>
+              <p className="text-cyan-200/60 font-mono tracking-widest text-sm uppercase mb-4">Global Intelligence Hub</p>
+              <div className="inline-block px-4 py-1.5 rounded-full border border-cyan-400/20 bg-cyan-950/40">
+                <span className="text-cyan-300 text-xs tracking-widest animate-pulse">הזן קוד פריצה (9090) כדי להמשיך</span>
+              </div>
             </div>
 
             <form onSubmit={handleAuth} className="space-y-4">
@@ -677,9 +685,7 @@ const App: React.FC = () => {
                 <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="password"
-                  className={`w-full bg-gray-50 border-2 ${
-                    authError ? 'border-red-400' : 'border-gray-200'
-                  } rounded-2xl p-5 pr-12 text-center text-3xl font-mono text-gray-900 focus:outline-none focus:border-primary/60 transition-all tracking-[0.5em] placeholder:text-gray-300`}
+                  className={`w-full bg-black/60 border border-cyan-500/30 rounded-2xl p-5 pr-12 text-center text-3xl font-mono text-cyan-100 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all tracking-[0.5em] placeholder:text-cyan-900/50 shadow-inner ${authError ? 'border-rose-400' : ''}`}
                   placeholder="••••"
                   value={authCode}
                   onChange={event => {
@@ -692,7 +698,7 @@ const App: React.FC = () => {
               </div>
 
               {authError && (
-                <p className="text-red-500 text-sm font-bold text-center animate-fade-in">
+                <p className="text-rose-400 text-sm font-mono tracking-widest font-bold text-center animate-fade-in bg-rose-950/40 py-2 rounded-xl border border-rose-500/20">
                   קוד שגוי, נסו שנית
                 </p>
               )}

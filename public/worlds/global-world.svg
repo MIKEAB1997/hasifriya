@@ -1,0 +1,65 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#040B1A"/>
+  <circle cx="802" cy="454" r="321" fill="url(#glowA)" opacity="0.42"/>
+  <circle cx="1135" cy="744" r="220" fill="url(#glowB)" opacity="0.34"/>
+  <circle cx="431" cy="259" r="210" fill="url(#glowC)" opacity="0.18"/>
+  <g opacity="0.28" stroke="#8CB8FF">
+    <circle cx="800" cy="480" r="288"/>
+    <circle cx="800" cy="480" r="370" stroke-dasharray="6 12"/>
+    <ellipse cx="800" cy="480" rx="502" ry="214"/>
+    <ellipse cx="800" cy="480" rx="425" ry="124" transform="rotate(-18 800 480)"/>
+  </g>
+  <g>
+    <circle cx="800" cy="480" r="170" fill="url(#planet)" stroke="#7CD7FF" stroke-opacity="0.45"/>
+    <path d="M687 438C736 396 847 398 913 439" stroke="#93EDFF" stroke-opacity="0.45"/>
+    <path d="M667 496C740 458 860 468 934 518" stroke="#93EDFF" stroke-opacity="0.35"/>
+    <path d="M718 566C785 548 857 554 890 581" stroke="#93EDFF" stroke-opacity="0.25"/>
+    <circle cx="800" cy="480" r="112" stroke="#B6F3FF" stroke-opacity="0.35"/>
+    <circle cx="800" cy="480" r="71" stroke="#B6F3FF" stroke-opacity="0.22"/>
+  </g>
+  <g stroke="#5D8CFF" stroke-opacity="0.22">
+    <path d="M237 777L569 559"/>
+    <path d="M980 301L1302 182"/>
+    <path d="M1044 633L1416 763"/>
+  </g>
+  <g>
+    <rect x="273" y="690" width="222" height="145" rx="26" fill="#060F20" stroke="#294C78"/>
+    <rect x="554" y="690" width="222" height="145" rx="26" fill="#060F20" stroke="#294C78"/>
+    <rect x="835" y="690" width="222" height="145" rx="26" fill="#060F20" stroke="#294C78"/>
+    <text x="327" y="748" fill="#7B8AA8" font-size="20" font-family="Arial">READY</text>
+    <text x="610" y="748" fill="#7B8AA8" font-size="20" font-family="Arial">MODE</text>
+    <text x="895" y="748" fill="#7B8AA8" font-size="20" font-family="Arial">WORLD</text>
+    <text x="357" y="797" fill="white" font-size="48" font-weight="700" font-family="Arial">LIVE</text>
+    <text x="629" y="797" fill="white" font-size="48" font-weight="700" font-family="Arial">FAST</text>
+    <text x="892" y="797" fill="white" font-size="48" font-weight="700" font-family="Arial">GLOBAL</text>
+  </g>
+  <g fill="white" opacity="0.75">
+    <circle cx="153" cy="186" r="2"/>
+    <circle cx="236" cy="362" r="1.5"/>
+    <circle cx="542" cy="127" r="2"/>
+    <circle cx="1237" cy="114" r="2"/>
+    <circle cx="1314" cy="293" r="1.5"/>
+    <circle cx="1222" cy="546" r="2"/>
+    <circle cx="418" cy="855" r="1.5"/>
+    <circle cx="1451" cy="822" r="2"/>
+  </g>
+  <defs>
+    <radialGradient id="planet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 480) rotate(90) scale(170)">
+      <stop stop-color="#1C4588"/>
+      <stop offset="0.5" stop-color="#0D2245"/>
+      <stop offset="1" stop-color="#071326"/>
+    </radialGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(802 454) rotate(90) scale(321)">
+      <stop stop-color="#426BFF"/>
+      <stop offset="1" stop-color="#426BFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1135 744) rotate(90) scale(220)">
+      <stop stop-color="#8A5BFF"/>
+      <stop offset="1" stop-color="#8A5BFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(431 259) rotate(90) scale(210)">
+      <stop stop-color="#25C1FF"/>
+      <stop offset="1" stop-color="#25C1FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

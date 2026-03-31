@@ -1,17 +1,27 @@
 
-import { Presentation } from './types';
+import { Presentation, Scenario } from './types';
 
 export const DEFAULT_CATEGORIES = [
+  'הנדסה חברתית',
+  'פישינג והתחזות',
+  'אבטחת מכשירים',
+  'פרטיות ורשתות חברתיות',
+  'בינה מלאכותית (AI)',
+  'אבטחה בדרכים',
   'אסטרטגיה ותכנון',
+  'ענן ו-SaaS',
+  'זהויות והרשאות',
+  'חולשות ו-KEV',
+  'איומי פנים',
+  'שרשרת אספקה',
   'טכנולוגיה ו-AI',
   'מיומנויות רכות',
   'ניתוח נתונים',
-  'תרבות ארגונית',
-  'שיווק ומכירות',
-  'פיננסים וכלכלה'
+  'כללי',
 ];
 
-// מאגר מוקאפים איכותי (50+ תמונות) לפי קטגוריות ויזואליות
+export const ALL_CATEGORIES = ['הכל', ...DEFAULT_CATEGORIES];
+
 export const MOCKUP_LIBRARY: Record<string, string[]> = {
   strategy: [
     'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000',
@@ -32,54 +42,195 @@ export const MOCKUP_LIBRARY: Record<string, string[]> = {
     'https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1000',
     'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000'
   ],
-  marketing: [
-    'https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1000',
-    'https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1000',
-    'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c207?q=80&w=1000',
-    'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1000',
-    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000',
-    'https://images.unsplash.com/photo-1560472355-536de3962603?q=80&w=1000'
-  ],
-  culture: [
-    'https://images.unsplash.com/photo-1522071823991-b3840a439223?q=80&w=1000',
-    'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000',
-    'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1000',
-    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000',
-    'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1000',
-    'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1000',
-    'https://images.unsplash.com/photo-1600880212340-0234403d18ff?q=80&w=1000'
-  ],
   data: [
     'https://images.unsplash.com/photo-1551288049-bbda00097c8b?q=80&w=1000',
     'https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=1000',
     'https://images.unsplash.com/photo-1504868584819-f8eec2421750?q=80&w=1000',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000',
-    'https://images.unsplash.com/photo-1551288049-bbda00097c8b?q=80&w=1000'
-  ],
-  finance: [
-    'https://images.unsplash.com/photo-1591696208162-a97b74174e9c?q=80&w=1000',
-    'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1000',
-    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000',
-    'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1000',
-    'https://images.unsplash.com/photo-1579621970795-87f957f60017?q=80&w=1000'
   ],
   soft_skills: [
     'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000',
     'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000',
     'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000',
-    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000',
-    'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1000'
   ],
-  abstract: [
-    'https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1000',
-    'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000',
-    'https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=1000',
-    'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000',
-    'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=1000'
-  ]
 };
 
 export const INITIAL_PRESENTATIONS: Presentation[] = [
+  // === מצגות אבטחת מידע ===
+  {
+    id: 'm1',
+    title: 'אשליות, הזיות, ומציאות עסקית',
+    description: 'חשיפת הטריקים של ה-AI בארגון ואיך לא ליפול בפח. שימוש בטוח ואחראי בכלי בינה מלאכותית.',
+    author: 'צוות אבטחת מידע',
+    category: 'בינה מלאכותית (AI)',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    isNew: true,
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 12 }, (_, i) => ({ id: `m1s${i}`, imageUrl: `https://picsum.photos/seed/aiillusions${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהי הסכנה העיקרית בשימוש ב-AI ללא אישור ארגוני (Shadow AI)?',
+        options: ['המודל עלול להעליב את העובד', 'דליפת מידע רגיש וסודות מסחריים למאגר האימון של המודל', 'המחשב יעבוד לאט יותר', 'זה יבזבז זמן עבודה'],
+        correctAnswer: 1,
+        explanation: 'כאשר מכניסים מידע למודלים ציבוריים, המידע עלול לשמש לאימון המודל ולהיחשף למשתמשים אחרים, מה שמוביל לדליפת סודות מסחריים.'
+      }
+    ]
+  },
+  {
+    id: 'm2',
+    title: 'המלכודת החברתית: מדריך שטח להישרדות עסקית',
+    description: 'איך לזהות כשאתם כבר חלק מהמהלך. התמודדות עם ריגול עסקי והנדסה חברתית בעולם האמיתי.',
+    author: 'צוות אבטחת מידע',
+    category: 'הנדסה חברתית',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    isNew: true,
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 13 }, (_, i) => ({ id: `m2s${i}`, imageUrl: `https://picsum.photos/seed/socialtrap${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהו "ריגול פסיפס" (Mosaic Espionage)?',
+        options: ['צילום מסמכים סודיים עם מצלמה זעירה', 'איסוף פרטי מידע קטנים ממקורות גלויים כדי להרכיב תמונה מלאה', 'פריצה לשרתי החברה', 'גניבת מחשבים ניידים'],
+        correctAnswer: 1,
+        explanation: 'תוקפים אוספים חלקיקי מידע גלויים (כמו פוסטים בלינקדאין, שיחות מסדרון) ומרכיבים אותם יחד כדי להבין סודות עסקיים.'
+      }
+    ]
+  },
+  {
+    id: 'm3',
+    title: 'טביעת הרגל הדיגיטלית שלך: תיק החקירה',
+    description: 'כיצד AI ו-OSINT הופכים מידע גלוי לנשק סייבר. מדריך המציג כיצד תוקפים אוספים מידע עלינו.',
+    author: 'צוות אבטחת מידע',
+    category: 'פרטיות ורשתות חברתיות',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1614064641913-a530a5046396?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 15 }, (_, i) => ({ id: `m3s${i}`, imageUrl: `https://picsum.photos/seed/investigation${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהו הצעד הראשון בצמצום טביעת הרגל הדיגיטלית?',
+        options: ['מחיקת כל החשבונות', 'הגדרת פרופילים לפרטיים והסרת מידע עודף', 'החלפת ספק אינטרנט', 'שימוש בטלפון "טיפש"'],
+        correctAnswer: 1,
+        explanation: 'הצעד הראשון הוא מעבר על הגדרות הפרטיות ברשתות החברתיות והסרת מידע אישי שאינו הכרחי.'
+      }
+    ]
+  },
+  {
+    id: 'm4',
+    title: 'מצב הישרדות: גרסת הטיולים',
+    description: 'המדריך המלא לצליחת העולם ב-2026. כללי התנהגות בטוחה ואבטחת מכשירים ניידים בנסיעות לחו"ל.',
+    author: 'צוות אבטחת מידע',
+    category: 'אבטחה בדרכים',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 15 }, (_, i) => ({ id: `m4s${i}`, imageUrl: `https://picsum.photos/seed/travel${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהו "פרופיל נמוך" בנסיעות לחו"ל?',
+        options: ['ללבוש רק בגדים שחורים', 'הסרת סממנים מזהים, הימנעות משיחות קולניות בעברית והיטמעות בשטח', 'לנסוע רק בלילה', 'לא לדבר עם אף אחד'],
+        correctAnswer: 1,
+        explanation: 'כדי להקטין את הסיכון לפגיעה, חשוב לא לבלוט במקומות רגישים ולשמור על פרופיל נמוך.'
+      }
+    ]
+  },
+  {
+    id: 'm5',
+    title: 'חשיפת הקסמים: כשהמוח עובד נגדנו',
+    description: 'מדריך למניעת הנדסה חברתית ופריצה למוח האנושי. למדו לזהות טריקים פסיכולוגיים של תוקפים.',
+    author: 'צוות אבטחת מידע',
+    category: 'הנדסה חברתית',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 14 }, (_, i) => ({ id: `m5s${i}`, imageUrl: `https://picsum.photos/seed/brain${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהי מטרת יצירת דחיפות מלאכותית בהתקפת הנדסה חברתית?',
+        options: ['לגרום לקורבן להגיב ללא חשיבה על ידי הצפת המערכת הקוגניטיבית', 'לגרום לקורבן לצחוק', 'לגרום לקורבן לקנות משהו', 'לבדוק את המהירות של הקורבן'],
+        correctAnswer: 0,
+        explanation: 'תוקפים משתמשים בדחיפות ולחץ (למשל: "החשבון ייחסם מיד!") כדי לגרום לנו לפעול מהר, בלי לעצור ולחשוב בהיגיון.'
+      }
+    ]
+  },
+  {
+    id: 'm6',
+    title: 'בדיקת מציאות: כשהעיניים והאוזניים משקרות',
+    description: 'הגנה מפני הונאות Deepfakes, AI והתחזות ארגונית בעידן החדש. כיצד לזהות זיופים.',
+    author: 'צוות אבטחת מידע',
+    category: 'בינה מלאכותית (AI)',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 15 }, (_, i) => ({ id: `m6s${i}`, imageUrl: `https://picsum.photos/seed/deepfake${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהו פרוטוקול OOBA בהתמודדות עם חשד ל-Deepfake?',
+        options: ['לנתק את האינטרנט בבניין', 'לנתק את השיחה וליצור קשר בערוץ תקשורת נפרד ומוכר', 'למחוק את האפליקציה', 'לצעוק על התוקף'],
+        correctAnswer: 1,
+        explanation: 'Out-of-Band Authentication: נתקו את ערוץ התקשורת הנוכחי וצרו קשר בערוץ אחר, בטוח ומוכר (למשל, להתקשר למספר המוכר).'
+      }
+    ]
+  },
+  {
+    id: 'm7',
+    title: 'Mobile Pit Stop: טיפול 10,000 לסמארטפון',
+    description: '5 דקות לביצועים מקסימליים ואבטחת ברזל. מדריך תחזוקה מהיר וקליל לסמארטפון שלכם.',
+    author: 'צוות אבטחת מידע',
+    category: 'אבטחת מכשירים',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 15 }, (_, i) => ({ id: `m7s${i}`, imageUrl: `https://picsum.photos/seed/mobile${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מדוע חשוב לבצע עדכוני תוכנה (מערכת הפעלה ואפליקציות)?',
+        options: ['כדי לקבל אימוג\'ים חדשים', 'כדי שהסוללה תחזיק יותר זמן', 'העדכונים סוגרים פרצות אבטחה שהאקרים מנצלים', 'כדי לפנות מקום בזיכרון'],
+        correctAnswer: 2,
+        explanation: 'עדכוני תוכנה מכילים "טלאי אבטחה" (Patches) שמתקנים חולשות שהתגלו, ומונעים מתוקפים לנצל אותן.'
+      }
+    ]
+  },
+  {
+    id: 'm8',
+    title: 'מהפך בלינקדאין: מ"מטרה קלה" ל"כספת"',
+    description: 'איך להפוך את הפרופיל למקצועי ומאובטח ב-5 צעדים פשוטים, בלי לאבד את הנטוורקינג.',
+    author: 'צוות אבטחת מידע',
+    category: 'פרטיות ורשתות חברתיות',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1611944212129-29977ae1398c?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 15 }, (_, i) => ({ id: `m8s${i}`, imageUrl: `https://picsum.photos/seed/linkedin${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'מהי הטעות הנפוצה ביותר בפרופיל לינקדאין שמקלה על תוקפים?',
+        options: ['תמונת פרופיל לא מקצועית', 'חשיפת פרטי קשר אישיים (מספר נייד, אימייל פרטי) לכלל הציבור', 'חוסר בתיאור תפקיד', 'מעט מדי חיבורים'],
+        correctAnswer: 1,
+        explanation: 'חשיפת מספר נייד ואימייל מאפשרת לתוקפים לבצע התקפות פישינג ממוקדות וניסיונות השתלטות על חשבונות.'
+      }
+    ]
+  },
+  {
+    id: 'm9',
+    title: 'מי המתחזה? מהדורת 2026',
+    description: 'האיומים החדשים: המשחק מתחיל. האם תצליחו לזהות את הבלוף? משחק אינטראקטיבי לזיהוי איומים.',
+    author: 'צוות אבטחת מידע',
+    category: 'הנדסה חברתית',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800',
+    driveUrl: '',
+    isNew: true,
+    addedAt: '2026-02-28',
+    slides: Array.from({ length: 13 }, (_, i) => ({ id: `m9s${i}`, imageUrl: `https://picsum.photos/seed/imposter${i + 1}/1024/576` })),
+    quiz: [
+      {
+        question: 'כיצד ניתן לזהות מייל פישינג מתקדם?',
+        options: ['המייל תמיד יגיע לתיקיית הספאם', 'שימוש באותיות דומות בדומיין (0 במקום O), ברכה גנרית, וקישור חשוד', 'המייל תמיד באנגלית שבורה', 'אי אפשר לזהות'],
+        correctAnswer: 1,
+        explanation: 'גם בהתקפות מתקדמות, תוקפים משתמשים בדומיינים מזויפים (Typosquatting) וקישורים מוסווים. חובה לבדוק את הכתובת המדויקת.'
+      }
+    ]
+  },
+  // === מצגות ארגוניות עם PDF ===
   {
     id: '1',
     title: 'מלחמות הסייבר של הבינה המלאכותית',
@@ -88,45 +239,68 @@ export const INITIAL_PRESENTATIONS: Presentation[] = [
     thumbnailUrl: MOCKUP_LIBRARY.tech[1],
     driveUrl: '/pdfs/AI_Cyber_Wars_World_Leaders_Threat_Report.pdf',
     isNew: true,
-    addedAt: '2026-02-16'
+    addedAt: '2026-02-16',
+    quiz: [
+      {
+        question: 'כיצד מדינות משתמשות ב-AI בסייבר התקפי?',
+        options: ['רק להגנה על רשתות', 'לאוטומציה של התקפות, זיהוי פרצות וביצוע מתקפות ממוקדות בקנה מידה גדול', 'לפיתוח אפליקציות בלבד', 'לאוטומציה של שירות לקוחות'],
+        correctAnswer: 1,
+        explanation: 'AI מאפשר לגורמים עוינים לבצע התקפות סייבר מורכבות בקנה מידה אדיר, לזהות פרצות אוטומטית ולהתאים התקפות לכל מטרה.'
+      }
+    ]
   },
   {
     id: '2',
     title: 'אינטליגנציה התנהגותית וחיישנים דיגיטליים',
-    description: 'סקירה מעמיקה על שימוש בחיישנים דיגיטליים לניתוח דפוסי התנהגות, זיהוי מגמות ושיפור תהליכי קבלת החלטות.',
+    description: 'סקירה מעמיקה על שימוש בחיישנים דיגיטליים לניתוח דפוסי התנהגות, זיהוי מגמות ושיפור קבלת החלטות.',
     category: 'ניתוח נתונים',
     thumbnailUrl: MOCKUP_LIBRARY.data[1],
     driveUrl: '/pdfs/Behavioral_Intelligence_Digital_Sensors.pdf',
     isNew: true,
-    addedAt: '2026-02-16'
+    addedAt: '2026-02-16',
+    quiz: [
+      {
+        question: 'מהו היתרון המרכזי של בינה התנהגותית בארגון?',
+        options: ['חיסכון בחשמל', 'זיהוי דפוסים חריגים וחיזוי איומים לפני שהם מתממשים', 'שיפור מיזוג האוויר', 'ניהול חופשות עובדים'],
+        correctAnswer: 1,
+        explanation: 'בינה התנהגותית מאפשרת לזהות חריגות בזמן אמת, לחזות אירועי אבטחה ולהגיב מהר יותר לאיומים פנימיים וחיצוניים.'
+      }
+    ]
   },
   {
     id: '3',
     title: 'אסטרטגיית המבצר הדיגיטלי',
-    description: 'מדריך אסטרטגי לבניית הגנה דיגיטלית רב-שכבתית, כולל עקרונות ארכיטקטורת אבטחה וניהול סיכונים בעידן הדיגיטלי.',
+    description: 'מדריך אסטרטגי לבניית הגנה דיגיטלית רב-שכבתית, כולל עקרונות ארכיטקטורת אבטחה וניהול סיכונים.',
     category: 'אסטרטגיה ותכנון',
     thumbnailUrl: MOCKUP_LIBRARY.strategy[0],
     driveUrl: '/pdfs/Digital_Fortress_Strategy.pdf',
-    addedAt: '2026-02-16'
-  },
-  {
-    id: '4',
-    title: 'שחקנים לא-מדינתיים בזירה הגלובלית',
-    description: 'ניתוח עוצמתם הגוברת של שחקנים לא-מדינתיים בפוליטיקה הבינלאומית, כולל ארגוני טרור, תאגידי ענק וקבוצות האקרים.',
-    category: 'אסטרטגיה ותכנון',
-    thumbnailUrl: MOCKUP_LIBRARY.strategy[2],
-    driveUrl: '/pdfs/Nonstate_Actors_Global_Power.pdf',
-    addedAt: '2026-02-16'
+    addedAt: '2026-02-16',
+    quiz: [
+      {
+        question: 'מהו עיקרון "Defense in Depth" (הגנה לעומק)?',
+        options: ['סיסמה ארוכה מאוד', 'שכבות הגנה מרובות כך שפריצת שכבה אחת לא מספיקה לתוקף', 'אנטי-וירוס טוב', 'גיבוי נתונים שבועי'],
+        correctAnswer: 1,
+        explanation: 'הגנה לעומק יוצרת שכבות אבטחה מרובות. גם אם תוקף עוקף שכבה אחת, שכבות נוספות עוצרות אותו.'
+      }
+    ]
   },
   {
     id: '5',
     title: 'ניהול פרויקטים למי שלא מנהל פרויקטים',
-    description: 'מדריך מעשי ונגיש לעקרונות ניהול פרויקטים, מיועד לאנשי מקצוע שנדרשים להוביל משימות ללא רקע פורמלי בתחום.',
+    description: 'מדריך מעשי ונגיש לעקרונות ניהול פרויקטים, מיועד לאנשי מקצוע שנדרשים להוביל משימות ללא רקע פורמלי.',
     category: 'מיומנויות רכות',
     thumbnailUrl: MOCKUP_LIBRARY.soft_skills[0],
     driveUrl: '/pdfs/Project_Management_for_Non-Managers.pdf',
     isNew: true,
-    addedAt: '2026-02-16'
+    addedAt: '2026-02-16',
+    quiz: [
+      {
+        question: 'מה המשמעות של "scope creep" בניהול פרויקטים?',
+        options: ['חיסכון בתקציב', 'הרחבה הדרגתית ולא מתוכננת של היקף הפרויקט מעבר להסכמה המקורית', 'שיטת ניהול זריז', 'סיום פרויקט לפני המועד'],
+        correctAnswer: 1,
+        explanation: 'Scope creep הוא הוספת דרישות ומשימות שלא תוכננו, שמובילות לעיכובים ועלויות גבוהות יותר.'
+      }
+    ]
   },
   {
     id: '6',
@@ -135,15 +309,182 @@ export const INITIAL_PRESENTATIONS: Presentation[] = [
     category: 'טכנולוגיה ו-AI',
     thumbnailUrl: MOCKUP_LIBRARY.tech[3],
     driveUrl: '/pdfs/Shadow_AI_Risk_to_Advantage.pdf',
-    addedAt: '2026-02-16'
+    addedAt: '2026-02-16',
+    quiz: [
+      {
+        question: 'מה צריך ארגון לעשות כדי לנהל Shadow AI אפקטיבית?',
+        options: ['לחסום את כל כלי ה-AI', 'לפתח מדיניות ברורה, לאמן עובדים ולאמץ כלים מאושרים', 'להתעלם מהנושא', 'לפטר עובדים שמשתמשים ב-AI'],
+        correctAnswer: 1,
+        explanation: 'ארגונים חכמים מפתחים מדיניות ברורה, מאמנים עובדים לשימוש בטוח ומספקים חלופות מאושרות - כך הסיכון הופך ליתרון.'
+      }
+    ]
   },
   {
     id: '7',
     title: 'הדרקון ומלחמת השבבים',
-    description: 'ניתוח גיאופוליטי של מלחמת השבבים בין סין לארה"ב, השלכותיה על שרשרת האספקה הגלובלית ועל עתיד הטכנולוגיה.',
+    description: 'ניתוח גיאופוליטי של מלחמת השבבים בין סין לארה"ב, השלכותיה על שרשרת האספקה הגלובלית ועתיד הטכנולוגיה.',
     category: 'אסטרטגיה ותכנון',
     thumbnailUrl: MOCKUP_LIBRARY.tech[5],
     driveUrl: '/pdfs/The_Dragon_and_the_Chip_War.pdf',
-    addedAt: '2026-02-16'
+    addedAt: '2026-02-16',
+    quiz: [
+      {
+        question: 'מדוע מלחמת השבבים כה קריטית לביטחון לאומי?',
+        options: ['שבבים משמשים רק לגיימינג', 'שבבים הם הלב של כל טכנולוגיה מודרנית: נשק, AI, תשתיות ותקשורת', 'בגלל עלות הייצור בלבד', 'בגלל השפעה על שוק הסמארטפונים'],
+        correctAnswer: 1,
+        explanation: 'שבבים הם הבסיס לכל הטכנולוגיה המודרנית. מי ששולט בשרשרת האספקה שולט בעתיד הטכנולוגי והביטחוני.'
+      }
+    ]
+  }
+];
+
+export const DEFAULT_SCENARIOS: Scenario[] = [
+  {
+    id: '1',
+    title: 'זיהוי פישינג במייל',
+    description: 'מייל דחוף מההנהלה דורש פעולה מיידית. האם תזהו את המלכודת ותצילו את הארגון?',
+    icon: 'mail',
+    steps: [
+      {
+        id: 's1-1',
+        context: 'קיבלת מייל עם הכותרת "דחוף: עדכון פרטי שכר". כתובת השולח היא hr@c0mpany-update.com. במייל יש קישור להתחברות למערכת השכר.',
+        question: 'מה הדבר המחשיד ביותר כאן?',
+        options: [
+          'הבקשה לעדכן פרטי שכר באמצע החודש',
+          'כתובת השולח מכילה שגיאות כתיב (c0mpany) ודומיין לא מוכר',
+          'המייל מסומן כ"דחוף"'
+        ],
+        correctOptionIndex: 1,
+        explanation: 'תוקפים רושמים דומיינים דומים מאוד למקור (Typosquatting). תמיד בדקו את הכתובת המדויקת, אות באות!'
+      },
+      {
+        id: 's1-2',
+        context: 'החלטת לא ללחוץ על הקישור. מה הצעד הבא שלך?',
+        question: 'כיצד תפעל כעת?',
+        options: [
+          'אמחק את המייל ואתעלם ממנו',
+          'אענה לשולח ואשאל אם זה אמיתי',
+          'אדווח על המייל לצוות אבטחת מידע (IT) ואז אמחק אותו'
+        ],
+        correctOptionIndex: 2,
+        explanation: 'דיווח לצוות האבטחה מאפשר להם לחסום את התוקף, לנתח את האיום ולהזהיר עובדים אחרים בארגון שאולי קיבלו מייל דומה.'
+      }
+    ]
+  },
+  {
+    id: '2',
+    title: 'הנדסה חברתית בטלפון (Vishing)',
+    description: 'שיחת טלפון מפתיעה מאיש תמיכה טכנית. האם תמסרו לו את המידע שהוא מבקש?',
+    icon: 'phone',
+    steps: [
+      {
+        id: 's2-1',
+        context: 'הטלפון מצלצל. על הקו "דני מצוות ה-IT". הוא טוען שיש וירוס חמור במחשב שלך וצריך שתוריד תוכנת שליטה מרחוק מיד כדי שיטפל בזה.',
+        question: 'מה תעשה?',
+        options: [
+          'אוריד את התוכנה מיד, ה-IT יודעים מה הם עושים וזה נשמע דחוף',
+          'אבקש ממנו להזדהות עם מספר עובד',
+          'אנתק את השיחה ואתקשר בעצמי למספר המוכר של התמיכה הטכנית'
+        ],
+        correctOptionIndex: 2,
+        explanation: 'לעולם אל תסמכו על שיחות נכנסות שמבקשות גישה. נתקו וצרו קשר בעצמכם דרך הערוץ הרשמי (Out-of-Band Authentication).'
+      },
+      {
+        id: 's2-2',
+        context: 'ניתקת את השיחה. לאחר דקה, מגיעה הודעת SMS: "חשבונך נחסם עקב פעילות חריגה. לחץ כאן לשחרור".',
+        question: 'מהי הפעולה הנכונה?',
+        options: [
+          'ללחוץ על הקישור מיד כדי לא לאבד גישה לכסף',
+          'להתעלם מההודעה לחלוטין',
+          'להיכנס לאפליקציית הבנק הרשמית (לא דרך הקישור) ולבדוק אם יש התראות'
+        ],
+        correctOptionIndex: 2,
+        explanation: 'הודעות SMS מזויפות (Smishing) נפוצות מאוד. תמיד היכנסו לשירות דרך האפליקציה הרשמית, לעולם לא דרך קישור בהודעה מלחיצה.'
+      }
+    ]
+  },
+  {
+    id: '3',
+    title: 'התקן USB מסתורי',
+    description: 'מצאתם דיסק-און-קי בחניון החברה. מה עושים איתו? מבחן מציאות קצר.',
+    icon: 'usb',
+    steps: [
+      {
+        id: 's3-1',
+        context: 'בדרך למשרד מצאתם כונן USB שעליו מודבקת מדבקה "משכורות הנהלה 2025".',
+        question: 'הסקרנות גוברת. מה הפעולה הנכונה?',
+        options: [
+          'אחבר אותו למחשב שלי רק כדי לראות של מי זה ולהחזיר לו',
+          'אמסור אותו מיד לקצין הביטחון או לצוות ה-IT מבלי לחבר אותו',
+          'אחבר אותו למחשב ישן שאינו מחובר לרשת'
+        ],
+        correctOptionIndex: 1,
+        explanation: 'כונני USB נטושים הם שיטה נפוצה להחדרת נוזקות לרשת הארגונית. מסרו אותם למומחים ואל תחברו אותם לעולם!'
+      }
+    ]
+  },
+  {
+    id: '4',
+    title: 'הונאת Deepfake של המנכ"ל',
+    description: 'שיחת וידאו דחופה מהמנכ"ל דורשת העברת כספים חריגה. האם תזהו את הזיוף?',
+    icon: 'shield',
+    steps: [
+      {
+        id: 's4-1',
+        context: 'אתה מקבל שיחת וידאו מהמנכ"ל. הוא נראה ונשמע בדיוק כמוהו, אך מבקש העברה בנקאית דחופה וסודית לספק חדש בחו"ל, בניגוד לנהלים.',
+        question: 'מה עליך לעשות?',
+        options: [
+          'לבצע את ההעברה מיד, זה המנכ"ל וזה דחוף',
+          'לבקש ממנו לשלוח גם במייל כדי שיהיה תיעוד',
+          'לנתק את השיחה וליצור קשר עם המנכ"ל בערוץ אחר (כמו טלפון נייד) לאימות'
+        ],
+        correctOptionIndex: 2,
+        explanation: 'Deepfake מאפשר לתוקפים לזייף קול ותמונה בזמן אמת. כאשר יש בקשה חריגה הקשורה לכספים, חובה לאמת בערוץ נפרד.'
+      },
+      {
+        id: 's4-2',
+        context: 'במהלך השיחה, אתה שם לב שהתנועות מעט לא טבעיות, והשפתיים לא תמיד מסונכרנות עם המילים.',
+        question: 'מה זה מסמן?',
+        options: [
+          'שיש לו בעיית אינטרנט',
+          'שזה כנראה זיוף Deepfake - סימנים מובהקים',
+          'שהוא עייף ממצגת ארוכה'
+        ],
+        correctOptionIndex: 1,
+        explanation: 'חוסר סנכרון בין שפתיים לקול, מצמוץ לא טבעי, או עיוותים קלים הם סימנים מובהקים ל-Deepfake. תמיד היו ערניים לפרטים.'
+      }
+    ]
+  },
+  {
+    id: '5',
+    title: 'סכנות ברשתות אלחוטיות ציבוריות',
+    description: 'אתם בנסיעת עסקים וזקוקים נואשות לאינטרנט. האם תתחברו לרשת הפתוחה בבית הקפה?',
+    icon: 'wifi',
+    steps: [
+      {
+        id: 's5-1',
+        context: 'אתה יושב בבית קפה בשדה התעופה ומחפש Wi-Fi. אתה רואה רשת פתוחה בשם "Free_Airport_WiFi".',
+        question: 'האם בטוח להתחבר אליה?',
+        options: [
+          'כן, שדות תעופה תמיד מספקים אינטרנט חינם',
+          'לא, רשתות פתוחות אינן מוצפנות ותוקפים יכולים ליירט את המידע שלך',
+          'כן, כל עוד אני גולש רק באתרים מאובטחים (HTTPS)'
+        ],
+        correctOptionIndex: 1,
+        explanation: 'רשתות Wi-Fi ציבוריות ופתוחות הן כר פורה לתוקפים (Man-in-the-Middle). עדיף להשתמש בגלישה סלולרית או VPN.'
+      },
+      {
+        id: 's5-2',
+        context: 'החלטת שבכל זאת אתה חייב להתחבר כדי לשלוח מייל דחוף. מה הדבר החשוב ביותר שעליך לעשות?',
+        question: 'כיצד תגן על עצמך?',
+        options: [
+          'להפעיל VPN (רשת פרטית וירטואלית) לפני שאתה מתחבר לשירותים רגישים',
+          'לגלוש במצב "גלישה בסתר" (Incognito)',
+          'לשנות את סיסמת המייל שלך מיד לאחר החיבור'
+        ],
+        correctOptionIndex: 0,
+        explanation: 'VPN מצפין את כל התעבורה שלך, כך שגם אם מישהו מאזין לרשת, הוא לא יוכל לקרוא את הנתונים שאתה שולח ומקבל.'
+      }
+    ]
   }
 ];

@@ -1,50 +1,108 @@
 
 <!DOCTYPE html>
-<html lang="he" dir="rtl" class="dark">
+<html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>הספרייה - מאגר מצגות</title>
+    <title>מאגרון</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script>
       tailwind.config = {
-        darkMode: 'class',
         theme: {
           extend: {
             colors: {
-              primary: '#ea2a33',
-              background: '#121212',
-              surface: '#1e1e1e',
-              'surface-light': '#2a2a2a'
+              primary: '#2563EB',
+              'primary-dark': '#1D4ED8',
+              background: '#F8FAFC',
+              surface: '#FFFFFF',
+              'surface-light': '#F1F5F9',
+              'surface-hover': '#E2E8F0',
             },
             fontFamily: {
-              sans: ['Assistant', 'sans-serif'],
+              sans: ['Assistant', 'Rubik', 'sans-serif'],
             },
           },
         },
       }
     </script>
     <style>
+      * { box-sizing: border-box; }
       body {
-        background-color: #121212;
-        color: white;
-        font-family: 'Assistant', sans-serif;
+        background-color: #F8FAFC;
+        color: #0f172a;
+        font-family: 'Assistant', 'Rubik', sans-serif;
+        -webkit-font-smoothing: antialiased;
       }
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
+      .hide-scrollbar::-webkit-scrollbar { display: none; }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .custom-scroll::-webkit-scrollbar { width: 4px; }
+      .custom-scroll::-webkit-scrollbar-track { background: #F1F5F9; }
+      .custom-scroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+      .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+      .glass { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+      .gradient-text {
+        background: linear-gradient(135deg, #2563EB, #7C3AED);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+      .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes scaleIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+      @keyframes twinkle { 0%,100% { opacity:0.2; transform:scale(1); } 50% { opacity:1; transform:scale(1.8); } }
+      @keyframes drift { 0% { transform:translateY(0) translateX(0); } 50% { transform:translateY(-6px) translateX(3px); } 100% { transform:translateY(0) translateX(0); } }
+      @keyframes glowPulse { 0%,100% { box-shadow:0 0 20px currentColor, 0 0 40px currentColor; } 50% { box-shadow:0 0 40px currentColor, 0 0 80px currentColor, 0 0 120px currentColor; } }
+      @keyframes scanLine { 0% { transform:translateY(-100%); opacity:0; } 10% { opacity:1; } 90% { opacity:1; } 100% { transform:translateY(400%); opacity:0; } }
+      @keyframes worldEnter { 0% { opacity:1; transform:scale(1); filter:blur(0px); } 100% { opacity:0; transform:scale(1.42); filter:blur(6px); } }
+      @keyframes worldOverlay { 0% { opacity:0; } 100% { opacity:1; } }
+      @keyframes floatNode { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+      @keyframes portalGlow { 0%,100% { opacity:0.6; } 50% { opacity:1; } }
+      @keyframes arenaDrift { 0%,100% { transform:translate3d(0,0,0) scale(1); } 50% { transform:translate3d(0,-12px,0) scale(1.02); } }
+      @keyframes arenaOrbit { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+      @keyframes arenaPulse { 0%,100% { opacity:0.35; transform:scale(0.96); } 50% { opacity:0.9; transform:scale(1.04); } }
+      @keyframes arenaSweep { 0% { transform:translateX(-120%) skewX(-18deg); opacity:0; } 20% { opacity:0.3; } 55% { opacity:0.8; } 100% { transform:translateX(220%) skewX(-18deg); opacity:0; } }
+      @keyframes imageFloat { 0%,100% { transform:translateY(0px) rotate(var(--float-rotate,0deg)); } 50% { transform:translateY(-10px) rotate(var(--float-rotate,0deg)); } }
+      @keyframes orbitSlow { from { transform:translate(-50%, -50%) rotate(0deg); } to { transform:translate(-50%, -50%) rotate(360deg); } }
+      @keyframes orbitReverse { from { transform:translate(-50%, -50%) rotate(360deg); } to { transform:translate(-50%, -50%) rotate(0deg); } }
+      @keyframes planetPulse { 0%,100% { opacity:0.25; transform:scale(0.98); } 50% { opacity:0.8; transform:scale(1.04); } }
+      .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+      .animate-slide-up { animation: slideUp 0.4s ease-out; }
+      .animate-scale-in { animation: scaleIn 0.25s ease-out; }
+      .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+      .animate-drift { animation: drift 6s ease-in-out infinite; }
+      .animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+      .animate-world-enter { animation: worldEnter 0.36s cubic-bezier(0.2,0.8,0.2,1) forwards; }
+      .animate-world-overlay { animation: worldOverlay 0.22s ease-out forwards; }
+      .animate-float-node { animation: floatNode 4s ease-in-out infinite; }
+      .animate-portal-glow { animation: portalGlow 2s ease-in-out infinite; }
+      .animate-arena-drift { animation: arenaDrift 8s ease-in-out infinite; }
+      .animate-arena-orbit { animation: arenaOrbit 16s linear infinite; transform-origin: center; }
+      .animate-arena-pulse { animation: arenaPulse 3s ease-in-out infinite; }
+      .animate-arena-sweep { animation: arenaSweep 4.8s linear infinite; }
+      .animate-image-float { animation: imageFloat 6s ease-in-out infinite; }
+      .animate-orbit-slow { animation: orbitSlow 32s linear infinite; transform-origin: center; }
+      .animate-orbit-reverse { animation: orbitReverse 24s linear infinite; transform-origin: center; }
+      .animate-planet-pulse { animation: planetPulse 5.2s ease-in-out infinite; }
+      .world-card-hover { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease, border-color 0.3s ease, opacity 0.4s ease; }
+      .world-card-hover:hover { transform: translateY(-10px) scale(1.025); }
+      canvas { display: block; width: 100%; height: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        html:focus-within { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.min.mjs" type="module"></script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.min.mjs" type="module"></script>
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

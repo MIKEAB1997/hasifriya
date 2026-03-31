@@ -2,8 +2,8 @@ import { supabase, isSupabaseConfigured } from './supabaseClient';
 import { Presentation } from '../types';
 import { INITIAL_PRESENTATIONS, DEFAULT_CATEGORIES } from '../constants';
 
-const STORAGE_KEY_PRES = 'library_v6_data';
-const STORAGE_KEY_CATS = 'library_v6_cats';
+const STORAGE_KEY_PRES = 'library_v7_data';
+const STORAGE_KEY_CATS = 'library_v7_cats';
 
 // --- localStorage helpers ---
 function getLocal<T>(key: string, fallback: T): T {

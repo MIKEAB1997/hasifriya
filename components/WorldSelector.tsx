@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { ArrowUpLeft, Orbit, Settings, Shield } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUpLeft, Settings, Shield, Orbit } from 'lucide-react';
 import WorldScene, { WorldSceneVariant } from './WorldScene';
 import { getWorldVisual } from './worldVisuals';
 
@@ -125,9 +125,9 @@ const WORLDS: WorldDef[] = [
   {
     id: 'shortcut-mobile',
     variant: 'mobile',
-    label: 'מובייל ונסיעות',
+    label: 'מובייל',
     labelEn: 'MOBILE',
-    tagline: 'הארגון נמצא בכיס: Wi-Fi פתוח, אפליקציות חודרניות והשפעת רשת בדרכים.',
+    tagline: 'הארגון נמצא בכיס: תקשורת, נסיעות לחו"ל והשפעת רשת בדרכים.',
     accentColor: '#6366f1',
     borderIdle: 'rgba(99,102,241,0.18)',
     borderHover: 'rgba(99,102,241,0.8)',
@@ -138,9 +138,9 @@ const WORLDS: WorldDef[] = [
   {
     id: 'shortcut-mobile-incidents',
     variant: 'mobile-incidents',
-    label: 'פריצות למובייל',
+    label: 'תקיפות מובייל',
     labelEn: 'MOBILE BREACH',
-    tagline: 'אירועי עבר מרעישים של פריצה שקטה מרחוק למכשירי קצה.',
+    tagline: 'פריצה שקטה מרחוק למכשירי קצה ללא התערבות משתמש.',
     accentColor: '#8b5cf6',
     borderIdle: 'rgba(139,92,246,0.18)',
     borderHover: 'rgba(139,92,246,0.8)',
@@ -165,7 +165,7 @@ const WORLDS: WorldDef[] = [
     id: 'shortcut-supply',
     variant: 'supply',
     label: 'שרשרת אספקה',
-    labelEn: 'SUPPLY CHAIN',
+    labelEn: 'SUPPLY',
     tagline: 'גישה של ספקים וחשבונות שותפים שהפכה לכניסה העיקרית של התוקפים.',
     accentColor: '#14b8a6',
     borderIdle: 'rgba(20,184,166,0.18)',
@@ -176,261 +176,151 @@ const WORLDS: WorldDef[] = [
   }
 ];
 
-const ORBIT_LAYOUT = [
-  { top: '3%', right: '10%' },
-  { top: '15%', right: '-2%' },
-  { top: '47%', right: '-4%' },
-  { top: '76%', right: '6%' },
-  { top: '88%', right: '35%' },
-  { top: '78%', left: '10%' },
-  { top: '56%', left: '-2%' },
-  { top: '24%', left: '-5%' },
-  { top: '4%', left: '10%' },
-  { top: '38%', right: '23%' },
-  { top: '20%', left: '26%' },
-  { top: '65%', left: '18%' }
-];
-
-
 interface WorldSelectorProps {
   onSelectWorld: (topicId: string) => void;
   onAdminClick: () => void;
 }
 
 const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminClick }) => {
-  const [entering, setEntering] = useState<string | null>(null);
-  const [overlayVisible, setOverlayVisible] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [previewWorldId, setPreviewWorldId] = useState(WORLDS[0]?.id ?? '');
+  const [hoveredWorld, setHoveredWorld] = useState<WorldDef | null>(null);
 
-  useEffect(() => {
-    requestAnimationFrame(() => setMounted(true));
-  }, []);
-
-  const previewWorld = useMemo(
-    () => WORLDS.find(world => world.id === (entering || previewWorldId)) || WORLDS[0],
-    [entering, previewWorldId]
-  );
-
-  const handleEnter = (worldId: string) => {
-    if (entering) return;
-    setEntering(worldId);
-    setTimeout(() => setOverlayVisible(true), 45);
-    setTimeout(() => onSelectWorld(worldId), 230);
-  };
+  // Split into left and right columns for the layout
+  const leftCol = WORLDS.slice(0, 6);
+  const rightCol = WORLDS.slice(6, 12);
 
   return (
-    <div
-      className="relative min-h-screen overflow-hidden"
-      dir="rtl"
-      style={{ background: 'radial-gradient(circle at top, #11204a 0%, #060d1d 34%, #02050d 100%)' }}
-    >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.14),transparent_22%),radial-gradient(circle_at_80%_20%,rgba(168,85,247,0.10),transparent_24%),linear-gradient(180deg,rgba(2,6,23,0.18),rgba(2,6,23,0.88))]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:36px_36px]" />
-        <div className="absolute -top-20 left-[12%] h-80 w-80 rounded-full bg-cyan-400/12 blur-[120px]" />
-        <div className="absolute top-[18%] right-[10%] h-96 w-96 rounded-full bg-fuchsia-500/10 blur-[140px]" />
-        <div className="absolute bottom-[-8rem] left-[28%] h-96 w-96 rounded-full bg-emerald-500/10 blur-[160px]" />
+    <div className="fixed inset-0 overflow-hidden bg-black font-sans selection:bg-white/30 text-white">
+      {/* Immersive 3D Game Background that changes on hover */}
+      <div className="absolute inset-0 transition-all duration-1000">
+        <WorldScene 
+          variant={hoveredWorld ? hoveredWorld.variant : 'neutral'} 
+          mode="hero" 
+        />
+        {/* Deep dark gradient over background to ensure UI is readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
       </div>
 
-      {overlayVisible && (
-        <div className="fixed inset-0 z-[100] animate-world-overlay bg-black" />
-      )}
-
-      <header className="relative z-20 mx-auto flex w-full max-w-screen-2xl items-center justify-between px-4 py-5 sm:px-8">
-        <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-blue-300/25 bg-blue-400/10 text-blue-100">
-            <Shield className="h-5 w-5" />
+      <header className="absolute top-0 inset-x-0 h-24 flex items-center justify-between px-10 z-20">
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md">
+            <Orbit className="h-6 w-6 text-white/80" />
           </div>
           <div>
-            <p className="text-[11px] font-black tracking-[0.28em] text-white/35">GLOBAL LIBRARY</p>
-            <p className="text-xl font-black text-white">מאגרון</p>
+            <h1 className="text-2xl font-black tracking-[0.2em] text-white">מאגרון</h1>
+            <p className="text-xs font-mono tracking-widest text-white/50">GLOBAL LIBRARY HUB</p>
           </div>
         </div>
-
         <button
           onClick={onAdminClick}
-          className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-white/70 transition-all hover:bg-white/10 hover:text-white"
+          className="h-10 w-10 rounded-full bg-white/5 hover:bg-white/15 transition-colors border border-white/10 flex items-center justify-center backdrop-blur-md"
         >
-          <Settings className="h-4 w-4" />
-          ניהול
+          <Settings className="h-4 w-4 text-white/70" />
         </button>
       </header>
 
-      <main className="relative z-10 mx-auto max-w-screen-2xl px-4 pb-12 sm:px-8 sm:pb-20">
-        <div
-          className="mx-auto max-w-4xl text-center transition-all duration-700"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-          }}
-        >
-          <p className="text-[11px] font-black tracking-[0.45em] text-white/35 sm:text-xs">GLOBAL WORLD ENTRY</p>
+      {/* Main UI Layout - Epic Game Selection Menu Style */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pt-24 px-8">
+        
+        {/* Title Area */}
+        <div className="text-center mb-10 transform transition-all duration-500">
+          <h2 className="text-[10px] sm:text-xs font-mono tracking-[0.5em] text-white/40 mb-4 uppercase">
+            {hoveredWorld ? 'INCOMING CONNECTION' : 'SELECT YOUR DESTINATION'}
+          </h2>
+          <h1 
+            className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight"
+            style={{
+              color: hoveredWorld ? hoveredWorld.accentColor : 'white',
+              textShadow: hoveredWorld ? `0 0 40px ${hoveredWorld.glowColor}` : '0 0 20px rgba(255,255,255,0.2)'
+            }}
+          >
+            {hoveredWorld ? hoveredWorld.label : 'בחר עולם סייבר'}
+          </h1>
+          <p className="mt-6 text-lg text-white/60 max-w-2xl mx-auto font-light h-16">
+            {hoveredWorld ? hoveredWorld.tagline : 'היכנס לממד סייבר ספציפי כדי לחקור אירועים, חומרים מיוחדים ותרחישי אמת מותאמים.'}
+          </p>
         </div>
 
-        <section className="relative mt-4 hidden min-h-[48rem] lg:block">
-          <div className="absolute inset-0">
-            <div className="animate-orbit-slow absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/8" />
-            <div className="animate-orbit-reverse absolute left-1/2 top-1/2 h-[31rem] w-[31rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
-            <div className="absolute left-1/2 top-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/12 bg-white/[0.03] shadow-[0_0_120px_rgba(59,130,246,0.14)]" />
-          </div>
-
-          <div className={`absolute left-1/2 top-1/2 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-white/10 bg-black/25 shadow-[0_50px_160px_rgba(0,0,0,0.55)] ${entering ? 'animate-world-enter' : ''}`}>
-            <WorldScene variant={previewWorld.variant} mode="hero" className="absolute inset-0 opacity-55" />
-            <img
-              src={getWorldVisual(previewWorld.variant)}
-              alt={previewWorld.label}
-              className="absolute inset-0 h-full w-full object-cover opacity-82"
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16),transparent_36%),linear-gradient(to_top,rgba(0,0,0,0.75),rgba(0,0,0,0.10))]" />
-            <div className="animate-planet-pulse absolute inset-[14%] rounded-full border border-white/10 shadow-[0_0_80px_rgba(255,255,255,0.08)]" />
-
-            <div className="absolute inset-x-0 bottom-0 p-7">
-              <div className="mx-auto max-w-sm rounded-[2rem] border border-white/10 bg-black/40 p-5 text-center backdrop-blur-xl">
-                <p className="text-[11px] font-black tracking-[0.28em] text-white/40">ACTIVE WORLD</p>
-                <h2 className="mt-2 text-3xl font-black text-white">{previewWorld.label}</h2>
-                <p className="mt-3 text-sm leading-7 text-white/70">{previewWorld.mood}</p>
-                <div className="mt-4 flex flex-wrap justify-center gap-2">
-                  {previewWorld.cues.map(cue => (
-                    <span
-                      key={cue}
-                      className="rounded-full border px-3 py-1 text-[11px] font-black"
-                      style={{
-                        color: previewWorld.accentColor,
-                        borderColor: previewWorld.borderHover,
-                        background: previewWorld.glowColor,
-                      }}
-                    >
-                      {cue}
-                    </span>
-                  ))}
-                </div>
-                <button
-                  onClick={() => handleEnter(previewWorld.id)}
-                  className="mt-5 inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-black text-white transition-all hover:-translate-y-0.5"
-                  style={{
-                    background: `linear-gradient(135deg, ${previewWorld.accentColor}, rgba(255,255,255,0.12))`,
-                    boxShadow: `0 20px 50px ${previewWorld.glowColor}`,
-                  }}
-                >
-                  כניסה לעולם
-                  <ArrowUpLeft className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {WORLDS.map((world, index) => {
-            const pos = ORBIT_LAYOUT[index % ORBIT_LAYOUT.length];
-            const isActive = previewWorld.id === world.id;
-            const isEntering = entering === world.id;
-
-            return (
-              <button
-                key={world.id}
-                onMouseEnter={() => setPreviewWorldId(world.id)}
-                onFocus={() => setPreviewWorldId(world.id)}
-                onClick={() => handleEnter(world.id)}
-                className={`group absolute w-[13rem] text-right transition-all duration-500 ${entering && entering !== world.id ? 'opacity-0' : ''}`}
-                style={{
-                  ...pos,
-                  transform: isEntering ? 'scale(1.08)' : isActive ? 'translateY(-8px) scale(1.03)' : 'translateY(0)',
-                }}
-              >
-                <div
-                  className="relative overflow-hidden rounded-[1.8rem] border bg-black/35 p-4 backdrop-blur-xl transition-all duration-500"
-                  style={{
-                    borderColor: isActive ? world.borderHover : world.borderIdle,
-                    boxShadow: isActive ? `0 25px 80px ${world.glowColor}` : '0 20px 55px rgba(0,0,0,0.22)',
-                  }}
-                >
-                  <WorldScene variant={world.variant} mode="card" className="absolute inset-0 opacity-35" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/88 to-black/25" />
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between gap-3">
-                      <span
-                        className="rounded-full border px-2.5 py-1 text-[10px] font-black tracking-[0.22em]"
-                        style={{
-                          color: world.accentColor,
-                          borderColor: world.borderHover,
-                          background: world.glowColor,
-                        }}
-                      >
-                        {world.labelEn}
-                      </span>
-                      <Orbit className="h-4 w-4 text-white/45" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-black text-white">{world.label}</h3>
-                    <p className="mt-2 text-xs leading-6 text-white/68">{world.tagline}</p>
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </section>
-
-        <section className="mt-4 lg:hidden">
-          <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-black/30 p-4 shadow-[0_30px_100px_rgba(0,0,0,0.42)]">
-            <div className="relative h-[22rem] overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/25">
-              <WorldScene variant={previewWorld.variant} mode="hero" className="absolute inset-0 opacity-55" />
-              <img
-                src={getWorldVisual(previewWorld.variant)}
-                alt={previewWorld.label}
-                className="absolute inset-0 h-full w-full object-cover opacity-84"
+        {/* Two-Column Clean Grid */}
+        <div className="w-full max-w-6xl mx-auto flex gap-4 md:gap-8 justify-center">
+          
+          {/* Left Column */}
+          <div className="flex flex-col gap-3 w-1/2 max-w-[400px]">
+            {leftCol.map(world => (
+              <WorldMenuItem 
+                key={world.id} 
+                world={world} 
+                isHovered={hoveredWorld?.id === world.id}
+                onHover={() => setHoveredWorld(world)}
+                onLeave={() => setHoveredWorld(null)}
+                onClick={() => onSelectWorld(world.id)}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/18 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <div className="rounded-[1.5rem] border border-white/10 bg-black/42 p-4 backdrop-blur-xl">
-                  <p className="text-[10px] font-black tracking-[0.28em] text-white/40">WORLD PREVIEW</p>
-                  <h2 className="mt-2 text-2xl font-black text-white">{previewWorld.label}</h2>
-                  <p className="mt-2 text-sm leading-6 text-white/68">{previewWorld.mood}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="hide-scrollbar mt-4 flex gap-3 overflow-x-auto pb-1">
-              {WORLDS.map(world => {
-                const isActive = previewWorld.id === world.id;
-                return (
-                  <button
-                    key={world.id}
-                    onClick={() => handleEnter(world.id)}
-                    onMouseEnter={() => setPreviewWorldId(world.id)}
-                    className="relative min-w-[13rem] overflow-hidden rounded-[1.55rem] border bg-black/30 p-4 text-right backdrop-blur-xl"
-                    style={{
-                      borderColor: isActive ? world.borderHover : world.borderIdle,
-                      boxShadow: isActive ? `0 20px 50px ${world.glowColor}` : 'none',
-                    }}
-                  >
-                    <WorldScene variant={world.variant} mode="card" className="absolute inset-0 opacity-35" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/88 to-black/25" />
-                    <div className="relative z-10">
-                      <p className="text-[10px] font-black tracking-[0.24em]" style={{ color: world.accentColor }}>
-                        {world.labelEn}
-                      </p>
-                      <h3 className="mt-3 text-base font-black text-white">{world.label}</h3>
-                      <p className="mt-2 text-xs leading-6 text-white/68">{world.mood}</p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            <button
-              onClick={() => handleEnter(previewWorld.id)}
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-sm font-black text-white"
-              style={{
-                background: `linear-gradient(135deg, ${previewWorld.accentColor}, rgba(255,255,255,0.12))`,
-              }}
-            >
-              כניסה לעולם
-              <ArrowUpLeft className="h-4 w-4" />
-            </button>
+            ))}
           </div>
-        </section>
 
-      </main>
+          {/* Right Column */}
+          <div className="flex flex-col gap-3 w-1/2 max-w-[400px]">
+            {rightCol.map(world => (
+              <WorldMenuItem 
+                key={world.id} 
+                world={world}
+                isHovered={hoveredWorld?.id === world.id}
+                onHover={() => setHoveredWorld(world)}
+                onLeave={() => setHoveredWorld(null)}
+                onClick={() => onSelectWorld(world.id)}
+              />
+            ))}
+          </div>
+
+        </div>
+      </div>
     </div>
+  );
+};
+
+// Sub-component for individual list item rendering
+const WorldMenuItem = ({ world, isHovered, onHover, onLeave, onClick }: { 
+  world: WorldDef, isHovered: boolean, onHover: () => void, onLeave: () => void, onClick: () => void 
+}) => {
+  return (
+    <button
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      onClick={onClick}
+      className={`relative group w-full flex items-center justify-between p-4 rounded-xl border backdrop-blur-md transition-all duration-300 ${
+        isHovered 
+          ? 'bg-black/60 scale-[1.02] translate-x-2' 
+          : 'bg-black/30 hover:bg-black/50 hover:border-white/20 border-white/5'
+      }`}
+      style={{
+        borderColor: isHovered ? world.borderHover : '',
+        boxShadow: isHovered ? `0 0 30px ${world.glowColor} inset, 0 0 20px ${world.glowColor}` : ''
+      }}
+    >
+      <div className="flex items-center gap-4 text-right">
+        {/* Bullet Indicator */}
+        <div 
+          className="w-1.5 h-8 rounded-full transition-all duration-300"
+          style={{ backgroundColor: isHovered ? world.accentColor : 'rgba(255,255,255,0.1)' }}
+        />
+        <div>
+          <h3 
+            className="text-xl font-bold transition-colors duration-300 text-right"
+            style={{ color: isHovered ? 'white' : 'rgba(255,255,255,0.7)' }}
+          >
+            {world.label}
+          </h3>
+          <p className="text-[10px] font-mono tracking-widest uppercase mt-1 text-right transition-colors duration-300" style={{ color: isHovered ? world.accentColor : 'rgba(255,255,255,0.3)' }}>
+            {world.labelEn} // {world.cues[0]}
+          </p>
+        </div>
+      </div>
+      
+      <ArrowUpLeft 
+        className={`w-5 h-5 transition-all duration-300 transform ${isHovered ? 'opacity-100 translate-x-[-8px]' : 'opacity-0 translate-x-0'}`} 
+        style={{ color: world.accentColor }}
+      />
+    </button>
   );
 };
 

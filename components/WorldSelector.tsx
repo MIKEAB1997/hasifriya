@@ -45,17 +45,17 @@ const WORLDS: WorldDef[] = [
     cues: ['Email', 'SMS', 'Fake Login']
   },
   {
-    id: 'shortcut-social',
-    variant: 'social',
-    label: 'הנדסה חברתית',
-    labelEn: 'SOCIAL',
-    tagline: 'לחץ, אמון, דחיפות וניצול של בני אדם לפני ניצול של טכנולוגיה.',
-    accentColor: '#fb923c',
-    borderIdle: 'rgba(251,146,60,0.18)',
-    borderHover: 'rgba(251,146,60,0.75)',
-    glowColor: 'rgba(251,146,60,0.24)',
-    mood: 'עולם של שכנוע, שיחות, פיתוי והפעלת לחץ אנושי מתעתע.',
-    cues: ['Urgency', 'Authority', 'Manipulation']
+    id: 'shortcut-ransomware',
+    variant: 'ransomware',
+    label: 'כופרה',
+    labelEn: 'RANSOMWARE',
+    tagline: 'הצפנה, דרישות תשלום, שיתוק והרגעים הראשונים שאחרי הנפילה.',
+    accentColor: '#f87171',
+    borderIdle: 'rgba(248,113,113,0.18)',
+    borderHover: 'rgba(248,113,113,0.75)',
+    glowColor: 'rgba(248,113,113,0.24)',
+    mood: 'אדום חם, סירנות מהבהבות, נתונים מוצפנים ותחושת סכנה.',
+    cues: ['Encryption', 'Extortion', 'Recovery']
   },
   {
     id: 'shortcut-identity',
@@ -71,32 +71,6 @@ const WORLDS: WorldDef[] = [
     cues: ['MFA', 'SSO', 'Access']
   },
   {
-    id: 'shortcut-deepfake',
-    variant: 'deepfake',
-    label: 'Deepfake ו-AI',
-    labelEn: 'AI & FAKE',
-    tagline: 'קול, וידאו וזהות מלאכותית שנראים אנושיים מספיק כדי לעקוף שיקול דעת.',
-    accentColor: '#e879f9',
-    borderIdle: 'rgba(232,121,249,0.18)',
-    borderHover: 'rgba(232,121,249,0.85)',
-    glowColor: 'rgba(232,121,249,0.28)',
-    mood: 'רשת נוירונים צבעונית, מראה שבורה ותודעה מסונתזת פנטסטית.',
-    cues: ['Voice Clone', 'Synthetic Media', 'Identity']
-  },
-  {
-    id: 'shortcut-vulnerabilities',
-    variant: 'vulnerabilities',
-    label: 'חולשות ו-KEV',
-    labelEn: 'VULN',
-    tagline: 'אפס-ימים, עדכונים דחופים, שרתים חשופים ונקודות תורפה קריטיות.',
-    accentColor: '#f97316',
-    borderIdle: 'rgba(249,115,22,0.18)',
-    borderHover: 'rgba(249,115,22,0.8)',
-    glowColor: 'rgba(249,115,22,0.25)',
-    mood: 'זרקורי סריקה, התרעות צבע כתום ומדדים קריטיים במערכת.',
-    cues: ['Zero Day', 'CVE', 'Patching']
-  },
-  {
     id: 'shortcut-insider',
     variant: 'insider',
     label: 'איומי פנים',
@@ -110,45 +84,6 @@ const WORLDS: WorldDef[] = [
     cues: ['Privilege', 'Behavior', 'Data Leak']
   },
   {
-    id: 'shortcut-ransomware',
-    variant: 'ransomware',
-    label: 'כופרה',
-    labelEn: 'RANSOMWARE',
-    tagline: 'הצפנה, דרישות תשלום, שיתוק והרגעים הראשונים שאחרי הנפילה.',
-    accentColor: '#f87171',
-    borderIdle: 'rgba(248,113,113,0.18)',
-    borderHover: 'rgba(248,113,113,0.75)',
-    glowColor: 'rgba(248,113,113,0.24)',
-    mood: 'אדום חם, סירנות מהבהבות, נתונים מוצפנים ותחושת סכנה.',
-    cues: ['Encryption', 'Extortion', 'Recovery']
-  },
-  {
-    id: 'shortcut-mobile',
-    variant: 'mobile',
-    label: 'מובייל',
-    labelEn: 'MOBILE',
-    tagline: 'הארגון נמצא בכיס: תקשורת, נסיעות לחו"ל והשפעת רשת בדרכים.',
-    accentColor: '#6366f1',
-    borderIdle: 'rgba(99,102,241,0.18)',
-    borderHover: 'rgba(99,102,241,0.8)',
-    glowColor: 'rgba(99,102,241,0.25)',
-    mood: 'חלל אינדיגו עמוק עם רשתות קורנות, אותות ניידים ומסכים צפים.',
-    cues: ['Apps', 'Wi-Fi', 'Travel']
-  },
-  {
-    id: 'shortcut-mobile-incidents',
-    variant: 'mobile-incidents',
-    label: 'תקיפות מובייל',
-    labelEn: 'MOBILE BREACH',
-    tagline: 'פריצה שקטה מרחוק למכשירי קצה ללא התערבות משתמש.',
-    accentColor: '#8b5cf6',
-    borderIdle: 'rgba(139,92,246,0.18)',
-    borderHover: 'rgba(139,92,246,0.8)',
-    glowColor: 'rgba(139,92,246,0.25)',
-    mood: 'צלילה לחיבורים נסתרים, אלמנטי רקע ארגמניים ואוקיינוס נתונים.',
-    cues: ['Spyware', 'Zero Click', 'iOS/Android']
-  },
-  {
     id: 'shortcut-cloud',
     variant: 'cloud',
     label: 'ענן ו-SaaS',
@@ -160,6 +95,19 @@ const WORLDS: WorldDef[] = [
     glowColor: 'rgba(56,189,248,0.24)',
     mood: 'חדר צלול, צבעי שמים סייבריים הולכים ומתבהרים.',
     cues: ['Drive', 'Sharing', 'Permissions']
+  },
+  {
+    id: 'shortcut-mobile',
+    variant: 'mobile',
+    label: 'מובייל ונסיעות',
+    labelEn: 'MOBILE',
+    tagline: 'הארגון נמצא בכיס: תקיפות מרחוק, תקשורת, נסיעות לחו"ל.',
+    accentColor: '#6366f1',
+    borderIdle: 'rgba(99,102,241,0.18)',
+    borderHover: 'rgba(99,102,241,0.8)',
+    glowColor: 'rgba(99,102,241,0.25)',
+    mood: 'חלל אינדיגו עמוק עם רשתות קורנות, אותות ניידים ומסכים צפים.',
+    cues: ['Apps', 'Wi-Fi', 'Zero Click']
   },
   {
     id: 'shortcut-supply',
@@ -185,8 +133,8 @@ const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onAdminCli
   const [hoveredWorld, setHoveredWorld] = useState<WorldDef | null>(null);
 
   // Split into left and right columns for the layout
-  const leftCol = WORLDS.slice(0, 6);
-  const rightCol = WORLDS.slice(6, 12);
+  const leftCol = WORLDS.slice(0, 4);
+  const rightCol = WORLDS.slice(4, 8);
 
   return (
     <div className="fixed inset-0 overflow-hidden bg-black font-sans selection:bg-white/30 text-white">

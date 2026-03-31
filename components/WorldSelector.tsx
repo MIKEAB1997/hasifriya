@@ -191,18 +191,6 @@ const ORBIT_LAYOUT = [
   { top: '65%', left: '18%' }
 ];
 
-const ORBIT_LAYOUT = [
-  { top: '7%', right: '10%' },
-  { top: '20%', right: '0%' },
-  { top: '57%', right: '5%' },
-  { top: '76%', right: '18%' },
-  { top: '78%', left: '18%' },
-  { top: '56%', left: '3%' },
-  { top: '18%', left: '0%' },
-  { top: '6%', left: '12%' },
-  { top: '38%', right: '18%' },
-  { top: '38%', left: '18%' },
-];
 
 interface WorldSelectorProps {
   onSelectWorld: (topicId: string) => void;

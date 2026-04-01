@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BookMarked, Menu, Search, Settings, X } from 'lucide-react';
 
-type ThemeKey = 'neutral' | 'cyber' | 'phishing' | 'espionage' | 'cloud';
+type ThemeKey = string;
 
 interface PortalNavbarProps {
   onLogoClick: () => void;
@@ -16,7 +16,7 @@ interface PortalNavbarProps {
   isWorldMode?: boolean;
 }
 
-const THEME_ACCENTS: Record<ThemeKey, { brand: string; worldChip: string; halo: string }> = {
+const THEME_ACCENTS: Record<string, { brand: string; worldChip: string; halo: string }> = {
   neutral: {
     brand: 'border-blue-200/70 bg-blue-50 text-blue-700',
     worldChip: 'border-gray-200 bg-white/90 text-gray-600',
@@ -31,6 +31,31 @@ const THEME_ACCENTS: Record<ThemeKey, { brand: string; worldChip: string; halo: 
     brand: 'border-amber-300/20 bg-amber-500/10 text-amber-100',
     worldChip: 'border-amber-300/20 bg-amber-500/10 text-amber-50',
     halo: 'shadow-[0_14px_60px_rgba(251,191,36,0.16)]',
+  },
+  identity: {
+    brand: 'border-yellow-300/20 bg-yellow-500/10 text-yellow-100',
+    worldChip: 'border-yellow-300/20 bg-yellow-500/10 text-yellow-50',
+    halo: 'shadow-[0_14px_60px_rgba(250,204,21,0.16)]',
+  },
+  insider: {
+    brand: 'border-rose-300/20 bg-rose-500/10 text-rose-100',
+    worldChip: 'border-rose-300/20 bg-rose-500/10 text-rose-50',
+    halo: 'shadow-[0_14px_60px_rgba(244,63,94,0.18)]',
+  },
+  ransomware: {
+    brand: 'border-red-300/20 bg-red-500/10 text-red-100',
+    worldChip: 'border-red-300/20 bg-red-500/10 text-red-50',
+    halo: 'shadow-[0_14px_60px_rgba(248,113,113,0.18)]',
+  },
+  mobile: {
+    brand: 'border-indigo-300/20 bg-indigo-500/10 text-indigo-100',
+    worldChip: 'border-indigo-300/20 bg-indigo-500/10 text-indigo-50',
+    halo: 'shadow-[0_14px_60px_rgba(99,102,241,0.18)]',
+  },
+  supply: {
+    brand: 'border-teal-300/20 bg-teal-500/10 text-teal-100',
+    worldChip: 'border-teal-300/20 bg-teal-500/10 text-teal-50',
+    halo: 'shadow-[0_14px_60px_rgba(20,184,166,0.18)]',
   },
   espionage: {
     brand: 'border-violet-300/20 bg-violet-500/10 text-violet-100',
@@ -58,7 +83,7 @@ const PortalNavbar: React.FC<PortalNavbarProps> = ({
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isDark = themeMode === 'dark';
-  const themeAccent = THEME_ACCENTS[themeKey];
+  const themeAccent = THEME_ACCENTS[themeKey] || THEME_ACCENTS['neutral'];
 
   const topBarClass = isDark
     ? 'border-white/10 bg-slate-950/80 shadow-lg shadow-black/20 backdrop-blur-xl'

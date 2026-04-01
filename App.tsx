@@ -227,6 +227,7 @@ const App: React.FC = () => {
   const [sectionFocusTopicId, setSectionFocusTopicId] = useState<string | null>(null);
   const deferredSearchQuery = useDeferredValue(searchQuery);
   const [isWorldMode, setIsWorldMode] = useState(false);
+  const [transitionState, setTransitionState] = useState<{ active: boolean, title: string, subtitle: string, color: string } | null>(null);
 
   const presentations = useMemo(() => {
     const driveIds = new Set(drivePresentations.map(item => item.id));
@@ -738,7 +739,50 @@ const App: React.FC = () => {
               onClose={() => setIsAdminOpen(false)}
             />
           )}
-        </Suspense>
+        
+      {transitionState && (
+        <div className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-black overflow-hidden" dir="rtl">
+          {/* Cyber lines animation and glow */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-0" />
+          <div className="absolute inset-x-0 bottom-0 h-[400px] bg-gradient-to-t from-black to-transparent opacity-90 z-0" />
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] opacity-20 pointer-events-none z-0"
+            style={{ backgroundColor: transitionState.color, animation: 'pulse 1.5s ease-in-out infinite' }}
+          />
+
+          <div className="relative z-10 flex flex-col items-center animate-[slide-up_0.8s_ease-out_forwards]">
+            <Orbit className="w-20 h-20 mb-8 animate-[spin_2s_linear_infinite]" style={{ color: transitionState.color }} />
+            
+            <h2 className="text-5xl md:text-7xl font-black text-white tracking-[0.15em] mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] uppercase text-center">
+              {transitionState.title}
+            </h2>
+            
+            <p className="text-xl md:text-2xl font-mono tracking-[0.4em] font-bold text-center" style={{ color: transitionState.color }}>
+              {transitionState.subtitle}
+            </p>
+            
+            <div className="mt-12 w-80 h-1.5 bg-white/10 mx-auto rounded-full overflow-hidden">
+              <div 
+                className="h-full rounded-full transition-all duration-[1800ms] ease-out w-0 animate-[loading-bar_1.8s_ease-out_forwards]" 
+                style={{ backgroundColor: transitionState.color }} 
+              />
+            </div>
+            {/* We need CSS keyframes for loading-bar if not in Tailwind, 
+                so we just do width 100% inline for simplicity of animation */}
+            <style>
+              {`
+                @keyframes loading-bar {
+                  0% { width: 0%; }
+                  50% { width: 70%; }
+                  100% { width: 100%; }
+                }
+              `}
+            </style>
+          </div>
+        </div>
+      )}
+
+      </Suspense>
       </>
     );
   }
